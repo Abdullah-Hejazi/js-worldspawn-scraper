@@ -5,7 +5,8 @@ const path = require("path");
 
 const WORLDSPAWN_URL = "https://ws.q3df.org";
 const URL = WORLDSPAWN_URL + "/maps";
-const SPECIFIC_MAP_URL = WORLDSPAWN_URL + "/map/";
+
+const STORAGE_PATH = __dirname + "/../storage/";
 
 class WorldSpawn {
     constructor (perPage) {
@@ -98,30 +99,15 @@ class WorldSpawn {
     }
 
     async downloadMap(map) {
-        const mapUrl = SPECIFIC_MAP_URL + map;
+        const srcUrl = URL + "/downloads/" + map + ".pk3";
+        const destUrl = STORAGE_PATH + path.basename(srcUrl);
 
-        const mapDownloadUrl = await this.performAction(() => {
-            const item = document.querySelector("div#mapdetails_container a.mapdetails_bigdownloadlink");
+        await this.downloadFile(srcUrl, destUrl);
 
-            if (item) {
-                return item.getAttribute("href");
-            }
-
-            return '';
-        }, mapUrl);
-
-        if (mapDownloadUrl) {
-            await this.downloadFile(WORLDSPAWN_URL + mapDownloadUrl);
-
-            return WORLDSPAWN_URL + mapDownloadUrl;
-        }
-
-        return '';
+        return destUrl;
     }
 
-    async downloadFile (url) {
-        const dest = path.basename(url);
-
+    async downloadFile (url, dest) {
         return new Promise((resolve, reject) => {
             const file = fs.createWriteStream(dest, { flags: "w" });
     

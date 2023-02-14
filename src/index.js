@@ -9,9 +9,17 @@ const main = async () => {
 
 		const config = new Config();
 
+		let maps = await worldspawn.getMapsSince(config.getLatestMap());
 
-		// let latestMaps = await worldspawn.getLatestMaps();
+		maps.reverse();
 
+		for (let i = 0; i < maps.length; i++) {
+			let map = await worldspawn.downloadMap(maps[i]);
+
+			console.log("Downloaded " + map + " (" + (i + 1) + "/" + maps.length + ")");
+
+			await config.setLatestMap(maps[i]);
+		}
 
 		await worldspawn.finish();
 	} catch (error) {
@@ -19,4 +27,16 @@ const main = async () => {
 	}
 }
 
-main();
+const sleep = (seconds) => {
+	return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+}
+
+const run = async () => {
+	while (true) {
+		await main();
+
+		await sleep(10);
+	}
+}
+
+run();
