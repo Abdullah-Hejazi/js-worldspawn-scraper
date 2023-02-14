@@ -6,7 +6,7 @@ const path = require("path");
 const WORLDSPAWN_URL = "https://ws.q3df.org";
 const URL = WORLDSPAWN_URL + "/maps";
 
-const STORAGE_PATH = __dirname + "/../storage/pk3/";
+const STORAGE_PATH = "/maps/pk3/";
 
 class WorldSpawn {
     constructor (perPage) {
