@@ -34,6 +34,8 @@ const sleep = (seconds) => {
 
 const run = async () => {
 	while (true) {
+		console.log("Started Iteration");
+
 		await main();
 
 		await sleep(10);

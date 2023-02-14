@@ -3,7 +3,7 @@ Description=js-worldspawn-scraper
 After=network.target
 
 [Service]
-User=hejazi
+User=root
 WorkingDirectory=/root/js-worldspawn-scraper/src
 ExecStart=/usr/bin/node /root/js-worldspawn-scraper/src/index.js
 Restart=always
