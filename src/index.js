@@ -19,8 +19,6 @@ const main = async () => {
 
 			console.log("Downloaded " + map + " (" + (i + 1) + "/" + maps.length + ")");
 
-			await BSP.GetBspFiles(map);
-
 			await config.setLatestMap(maps[i]);
 		}
 
