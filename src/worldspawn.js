@@ -37,6 +37,7 @@ class WorldSpawn {
     }
 
     async getLastPage () {
+        console.log("Getting last page")
         let lastPage = await this.performAction(() => {
             const lastPageButton = document.querySelector("a[title='Last page']");
 
@@ -50,9 +51,11 @@ class WorldSpawn {
                 }
             }
 
-            return 1;
+            return 0;
         })
-        
+
+        console.log("LastPage: " + lastPage);
+
         return lastPage;
     }
 

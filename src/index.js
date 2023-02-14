@@ -10,6 +10,10 @@ const main = async () => {
 
 		const config = new Config();
 
+		console.log("Loaded config");
+
+		console.log("Latest map found: " + config.getLatestMap());
+
 		let maps = await worldspawn.getMapsSince(config.getLatestMap());
 
 		maps.reverse();

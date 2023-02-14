@@ -8,7 +8,11 @@ class Config {
         console.log("Started Config");
 
         if (! fs.existsSync(DATAPATH)) {
+            console.log("Data file does not exist, creating new one")
             this.setDefaults();
+
+            this.save();
+
             return;
         }
 
