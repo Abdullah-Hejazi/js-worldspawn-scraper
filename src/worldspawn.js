@@ -19,7 +19,9 @@ class WorldSpawn {
     async initialize () {
 		this.browser = await puppeteer.launch({
             headless: true,
-            args: ['--no-sandbox']
+            args: ['--no-sandbox'],
+            ignoreHTTPSErrors: true,
+            dumpio: false
         }); 
     }
 
