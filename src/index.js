@@ -1,5 +1,6 @@
 const WorldSpawn = require('./worldspawn');
 const Config = require('./config');
+const BSP = require('./bsp');
 
 const main = async () => {
 	try {
@@ -17,6 +18,8 @@ const main = async () => {
 			let map = await worldspawn.downloadMap(maps[i]);
 
 			console.log("Downloaded " + map + " (" + (i + 1) + "/" + maps.length + ")");
+
+			await BSP.GetBspFiles(map);
 
 			await config.setLatestMap(maps[i]);
 		}
