@@ -26,6 +26,8 @@ const main = async () => {
 			console.log("Downloaded " + map + " (" + (i + 1) + "/" + maps.length + ")");
 
 			await config.setLatestMap(maps[i]);
+
+			await sleep(2);
 		}
 
 		await worldspawn.finish();
