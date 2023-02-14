@@ -5,6 +5,8 @@ class Config {
     constructor () {
         this.data = {};
 
+        console.log("Started Config");
+
         if (! fs.existsSync(DATAPATH)) {
             this.setDefaults();
             return;

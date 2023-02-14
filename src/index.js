@@ -14,6 +14,8 @@ const main = async () => {
 
 		maps.reverse();
 
+		console.log("Found " + maps.length + " maps to download");
+
 		for (let i = 0; i < maps.length; i++) {
 			let map = await worldspawn.downloadMap(maps[i]);
 
@@ -24,6 +26,7 @@ const main = async () => {
 
 		await worldspawn.finish();
 	} catch (error) {
+		console.log("An error occurred");
 		console.error(error);
 	}
 }
