@@ -3,24 +3,24 @@ const Config = require('./config');
 const BSP = require('./bsp');
 
 const main = async () => {
-	try {
-		const worldspawn = new WorldSpawn(50);
+	const worldspawn = new WorldSpawn(50);
 
-		await worldspawn.initialize();
+	await worldspawn.initialize();
 
-		const config = new Config();
+	const config = new Config();
 
-		console.log("Loaded config");
+	console.log("Loaded config");
 
-		console.log("Latest map found: " + config.getLatestMap());
+	console.log("Latest map found: " + config.getLatestMap());
 
-		let maps = await worldspawn.getMapsSince(config.getLatestMap());
+	let maps = await worldspawn.getMapsSince(config.getLatestMap());
 
-		maps.reverse();
+	maps.reverse();
 
-		console.log("Found " + maps.length + " maps to download");
+	console.log("Found " + maps.length + " maps to download");
 
-		for (let i = 0; i < maps.length; i++) {
+	for (let i = 0; i < maps.length; i++) {
+		try {
 			let map = await worldspawn.downloadMap(maps[i]);
 
 			console.log("Downloaded " + map + " (" + (i + 1) + "/" + maps.length + ")");
@@ -28,13 +28,12 @@ const main = async () => {
 			await config.setLatestMap(maps[i]);
 
 			await sleep(2);
+		} catch (error) {
+			console.log("Failed to download " + maps[i] + " (" + (i + 1) + "/" + maps.length + ")");
 		}
-
-		await worldspawn.finish();
-	} catch (error) {
-		console.log("An error occurred");
-		console.error(error);
 	}
+
+	await worldspawn.finish();
 }
 
 const sleep = (seconds) => {

@@ -95,8 +95,13 @@ class WorldSpawn {
         for (let i = 0; i < lastPage; i++) {
             let mapsInPage = await this.getMapsInPage(i);
 
+            console.log("Maps in page: " + mapsInPage.length + " (" + i + "/" + lastPage + ")");
+
             if (mapsInPage.includes(map)) {
                 maps = maps.concat(mapsInPage.slice(0, mapsInPage.indexOf(map)));
+
+                console.log("Found map " + map + " in page " + i + " (" + maps.length + " maps found");
+
                 break;
             }
 
