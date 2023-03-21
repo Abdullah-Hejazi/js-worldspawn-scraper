@@ -6,7 +6,7 @@ const TEMO_PATH = __dirname + "/../storage/temp/";
 const BSP_PATH = '/maps/bsp/';
 
 class BSP {
-    static async Extract(file) {
+    static Extract(file) {
         const zip = new AdmZip(file);
 
         zip.extractAllTo(TEMO_PATH + path.basename(file));
@@ -15,7 +15,7 @@ class BSP {
     }
 
     static async GetBspFiles(file) {
-        const extractedFile = await this.Extract(file);
+        const extractedFile = this.Extract(file);
 
         console.log('HERE BSP?');
 
