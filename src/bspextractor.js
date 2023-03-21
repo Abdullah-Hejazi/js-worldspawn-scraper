@@ -1,9 +1,9 @@
-import { walkDir, GetBspFiles } from './bsp.js';
+const BSP = require('./bsp');
 
-walkDir('/maps/pk3/', async (filePath) => {
+BSP.walkDir('/maps/pk3/', async (filePath) => {
     if (filePath.endsWith(".pk3")) {
         console.log('Extracting: ' + filePath)
 
-        await GetBspFiles(filePath)
+        await BSP.GetBspFiles(filePath)
     }
 });
