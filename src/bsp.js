@@ -32,6 +32,9 @@ class BSP {
 
     static moveBSP (oldPath) {
         const newPath = BSP_PATH + path.basename(oldPath);
+
+        console.log("Moving " + oldPath + " to " + newPath)
+
         return new Promise((resolve, reject) => {
             fs.rename(oldPath, newPath, (err) => {
                 if (err) {
