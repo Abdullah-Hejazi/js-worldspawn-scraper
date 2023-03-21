@@ -11,18 +11,16 @@ class BSP {
 
         zip.extractAllTo(TEMO_PATH + path.basename(file));
 
-        console.log('Extracted PK3 file: ' + file)
-
         return TEMO_PATH + path.basename(file);
     }
 
     static async GetBspFiles(file) {
-        console.log("Extracting bsp files from " + file);
         const extractedFile = await this.Extract(file);
 
 
 
         this.walkDir(extractedFile, async (filePath) => {
+            console.log('found file: ' + filePath)
             if (filePath.endsWith(".bsp")) {
                 await this.moveBSP(filePath);
             }
