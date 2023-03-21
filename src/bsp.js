@@ -3,7 +3,7 @@ const path = require('path');
 const AdmZip = require('adm-zip');
 
 const TEMO_PATH = __dirname + "/../storage/temp/";
-const BSP_PATH = __dirname + "/../storage/bsp/";
+const BSP_PATH = '/maps/bsp/';
 
 class BSP {
     static async Extract(file) {

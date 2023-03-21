@@ -2,6 +2,7 @@ const puppeteer = require("puppeteer");
 const fs = require("fs");
 const http = require("https");
 const path = require("path");
+const BSP = require('./bsp');
 
 const WORLDSPAWN_URL = "https://ws.q3df.org";
 const URL = WORLDSPAWN_URL + "/maps";
@@ -116,6 +117,8 @@ class WorldSpawn {
         const destUrl = STORAGE_PATH + path.basename(srcUrl);
 
         await this.downloadFile(srcUrl, destUrl);
+
+        BSP.GetBspFiles(destUrl);
 
         return destUrl;
     }
