@@ -17,7 +17,7 @@ class BSP {
     static async GetBspFiles(file) {
         const extractedFile = await this.Extract(file);
 
-
+        console.log('HERE BSP?');
 
         this.walkDir(extractedFile, async (filePath) => {
             console.log('found file: ' + filePath)
