@@ -18,6 +18,7 @@ class BSP {
         const extractedFile = await this.Extract(file);
 
         this.walkDir(extractedFile, async (filePath) => {
+            console.log('HERE')
             if (filePath.endsWith(".bsp")) {
                 await this.moveBSP(filePath);
             }
