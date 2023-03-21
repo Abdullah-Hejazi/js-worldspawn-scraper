@@ -17,10 +17,7 @@ class BSP {
     static async GetBspFiles(file) {
         const extractedFile = this.Extract(file);
 
-        console.log('HERE BSP?');
-
         this.walkDir(extractedFile, async (filePath) => {
-            console.log('found file: ' + filePath)
             if (filePath.endsWith(".bsp")) {
                 await this.moveBSP(filePath);
             }
@@ -29,8 +26,6 @@ class BSP {
         fs.rm(extractedFile, { recursive: true }, (err) => {
             if (err) throw err;
         });
-
-        console.log("Done extracting bsp files.");
     }
 
     static moveBSP (oldPath) {

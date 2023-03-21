@@ -7,3 +7,5 @@ BSP.walkDir('/maps/pk3/', async (filePath) => {
         await BSP.GetBspFiles(filePath)
     }
 });
+
+console.log("Finished extracting bsp files")
