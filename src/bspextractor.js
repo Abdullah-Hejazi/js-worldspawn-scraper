@@ -1,15 +1,15 @@
 const BSP = require('./bsp');
 
 const START_LETTER = 'p';
+let startExtracting = false;
 BSP.walkDir('/maps/pk3/', async (filePath) => {
     let file = filePath.split('/').pop();
-    let ex = false;
 
     if (file.toLowerCase().startsWith(START_LETTER)) {
-        ex = true;
+        startExtracting = true;
     }
 
-    if (! ex) {
+    if (! startExtracting) {
         return;
     }
 
